@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Audio | Music Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans min-h-screen flex items-center justify-center p-4">
+
+    <div id="playerContainer" class="bg-zinc-900 rounded-3xl p-6 md:p-8 w-full max-w-md shadow-2xl shadow-violet-500/20 border border-zinc-800 relative overflow-hidden transition-all duration-300 ease-in-out">
+        
+        <div class="flex justify-between items-center mb-6">
+            <button id="minimizeBtn" class="text-zinc-400 hover:text-violet-400 transition transform hover:scale-110" title="Minimize Player">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <span class="text-xs font-bold tracking-widest text-violet-400 uppercase">Now Playing</span>
+            <button id="queueBtn" class="text-zinc-400 hover:text-violet-400 transition transform hover:scale-110" title="Open Queue">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <div id="albumArtContainer" class="relative w-full aspect-square rounded-2xl overflow-hidden mb-8 shadow-lg shadow-black/50 group">
+            <img id="coverImage" src="https://via.placeholder.com/400x400/8b5cf6/09090b?text=Neon+Audio" alt="Album Art" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent"></div>
+        </div>
+
+        <div class="text-center mb-6">
+            <h2 id="songTitle" class="text-2xl font-extrabold text-white mb-1 truncate">Loading...</h2>
+            <p id="songArtist" class="text-sm text-zinc-400 font-medium">Please wait</p>
+        </div>
+
+        <div class="mb-6">
+            <div class="flex justify-between text-xs text-zinc-500 font-medium mb-2">
+                <span id="currentTime">0:00</span>
+                <span id="durationTime">0:00</span>
+            </div>
+            <input type="range" id="progressBar" min="0" max="100" value="0" class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer custom-slider">
+        </div>
+
+        <div class="flex justify-between items-center mb-6 px-2">
+            <button id="shuffleBtn" class="text-zinc-500 hover:text-pink-500 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+            </button>
+            
+            <div class="flex items-center gap-6">
+                <button id="prevBtn" class="text-zinc-300 hover:text-white transition">
+                    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path></svg>
+                </button>
+                
+                <button id="playPauseBtn" class="w-16 h-16 flex items-center justify-center bg-violet-600 hover:bg-violet-500 text-white rounded-full shadow-lg shadow-violet-600/40 transition transform hover:scale-105">
+                    <svg id="playIcon" class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    <svg id="pauseIcon" class="w-8 h-8 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                </button>
+                
+                <button id="nextBtn" class="text-zinc-300 hover:text-white transition">
+                    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path></svg>
+                </button>
+            </div>
+
+            <button id="repeatBtn" class="text-zinc-500 hover:text-pink-500 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            </button>
+        </div>
+
+        <div id="volumeContainer" class="flex items-center gap-3">
+            <button id="muteBtn" class="text-zinc-400 hover:text-violet-400 transition">
+                <svg id="volumeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M11 5L6 9H2v6h4l5 4V5z"></path></svg>
+            </button>
+            <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1" class="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer custom-slider">
+        </div>
+
+        <div id="queuePanel" class="absolute inset-0 bg-zinc-900/95 backdrop-blur-md p-6 transform translate-y-full transition-transform duration-300 ease-in-out z-20 flex flex-col">
+            <div class="flex justify-between items-center mb-6 border-b border-zinc-800 pb-4">
+                <h3 class="font-bold text-white tracking-wider text-lg">Up Next</h3>
+                <button id="closeQueueBtn" class="text-zinc-400 hover:text-pink-500 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="queueList" class="flex-1 overflow-y-auto space-y-3 custom-scrollbar pr-2"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

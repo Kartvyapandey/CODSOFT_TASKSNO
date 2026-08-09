@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartvya Pandey | Frontend Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans scroll-smooth relative">
+
+    <nav class="flex justify-between items-center p-6 bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
+        <h1 class="text-2xl font-bold tracking-wider text-sky-400">KARTVYA PANDEY</h1>
+        
+        <ul class="hidden md:flex space-x-6 text-slate-300 font-medium">
+            <li><a href="#home" class="hover:text-sky-400 transition">Home</a></li>
+            <li><a href="#about" class="hover:text-sky-400 transition">About</a></li>
+            <li><a href="#skills" class="hover:text-sky-400 transition">Skills</a></li>
+            <li><a href="#projects" class="hover:text-sky-400 transition">Projects</a></li>
+            <li><a href="#resume" class="hover:text-sky-400 transition">Resume</a></li>
+            <li><a href="#contact" class="hover:text-sky-400 transition">Contact</a></li>
+        </ul>
+
+        <button id="menuBtn" class="md:hidden text-slate-300 focus:outline-none">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-slate-950 border-b border-slate-800 px-6 py-4 space-y-3">
+        <a href="#home" class="block text-slate-300 hover:text-sky-400">Home</a>
+        <a href="#about" class="block text-slate-300 hover:text-sky-400">About</a>
+        <a href="#skills" class="block text-slate-300 hover:text-sky-400">Skills</a>
+        <a href="#projects" class="block text-slate-300 hover:text-sky-400">Projects</a>
+        <a href="#resume" class="block text-slate-300 hover:text-sky-400">Resume</a>
+        <a href="#contact" class="block text-slate-300 hover:text-sky-400">Contact</a>
+    </div>
+
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 bg-slate-900">
+        <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-white">
+            Hi, I am <span class="text-sky-400">Kartvya Pandey</span>
+        </h2>
+        <p class="text-lg md:text-xl text-slate-400 max-w-xl mb-8">
+            A goal-oriented Frontend Developer specialized in building responsive, interactive, and high-performance web applications.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#projects" class="bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold px-6 py-3 rounded-md transition shadow-lg shadow-sky-500/20">
+                View My Projects
+            </a>
+            <a href="Kartvya_Pandey_Resume.pdf" download class="border border-sky-400 text-sky-400 hover:bg-sky-400/10 font-bold px-6 py-3 rounded-md transition flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                Download Resume
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 max-w-5xl mx-auto">
+        <div class="border border-slate-800 bg-slate-950 p-8 rounded-xl shadow-2xl">
+            <h3 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-800 pb-2">Professional Summary</h3>
+            <p class="text-slate-300 leading-relaxed text-lg mb-4">
+                Currently pursuing a Bachelor of Computer Applications (BCA) at Shri Vaishnav Institute of Management, I possess a keen analytical mind geared towards clean frontend software architecture. Supplemented by a Diploma in Computer Applications (DCA), my expertise covers modern HTML5, CSS3, JavaScript (ES6+), and Responsive Web Design frameworks.
+            </p>
+            <p class="text-slate-400 leading-relaxed text-lg">
+                I am a dedicated developer focused on writing clean, maintainable source code and delivering intuitive user experiences.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 px-6 bg-slate-950">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold text-sky-400 mb-12 text-center">Technical Skills</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-lg text-center hover:border-sky-400/50 transition">
+                    <p class="text-xl font-bold text-white mb-2">HTML5 & CSS3</p>
+                    <span class="text-xs text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded">Advanced</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-lg text-center hover:border-sky-400/50 transition">
+                    <p class="text-xl font-bold text-white mb-2">JavaScript (ES6+)</p>
+                    <span class="text-xs text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded">DOM & Logic</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-lg text-center hover:border-sky-400/50 transition">
+                    <p class="text-xl font-bold text-white mb-2">Tailwind & Bootstrap</p>
+                    <span class="text-xs text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded">Responsive UI</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-lg text-center hover:border-sky-400/50 transition">
+                    <p class="text-xl font-bold text-white mb-2">Java & C++</p>
+                    <span class="text-xs text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded">OOPs Paradigm</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-lg text-center hover:border-sky-400/50 transition">
+                    <p class="text-xl font-bold text-white mb-2">MySQL & SQL</p>
+                    <span class="text-xs text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded">Relational DB</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-lg text-center hover:border-sky-400/50 transition">
+                    <p class="text-xl font-bold text-white mb-2">DBMS</p>
+                    <span class="text-xs text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded">Scaler Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold text-sky-400 mb-12 text-center">Featured Projects</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden hover:border-sky-400 transition flex flex-col justify-between">
+                    <img src="tic-tac-toe.png" alt="Tic Tac Toe" class="w-full h-45 object-cover border-b border-slate-800">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white mb-2">Tic-Tac-Toe App</h4>
+                        <p class="text-slate-400 text-sm mb-4">Interactive 2-player grid game featuring dynamic win-detection logic and responsive DOM state updates.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">HTML</span>
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">CSS</span>
+                            <span class="text-xs bg-slate-800 text-sky-400 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex justify-between items-center text-sm font-bold">
+                        <a href="https://github.com/kartvyapandey" target="_blank" class="text-sky-400 hover:text-sky-300">GitHub &rarr;</a>
+                        <a href="https://kartvyapandey.github.io/tic-tac-toe/" target="_blank" class="text-slate-300 hover:text-white">Live Demo &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden hover:border-sky-400 transition flex flex-col justify-between">
+                    <img src="rock-paper-scissors.png" alt="Rock Paper Scissors" class="w-full h-75 object-cover border-b border-slate-800">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white mb-2">Rock-Paper-Scissors</h4>
+                        <p class="text-slate-400 text-sm mb-4">Human vs Computer gameplay featuring automated random selections, real-time score tracking, and clean UI.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">HTML</span>
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">CSS</span>
+                            <span class="text-xs bg-slate-800 text-sky-400 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex justify-between items-center text-sm font-bold">
+                        <a href="https://github.com/kartvyapandey" target="_blank" class="text-sky-400 hover:text-sky-300">GitHub &rarr;</a>
+                        <a href="https://kartvyapandey.github.io/rock-paper-scissors/" target="_blank" class="text-slate-300 hover:text-white">Live Demo &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden hover:border-sky-400 transition flex flex-col justify-between">
+                    <img src="currency-converter.png" alt="Currency Converter" class="w-full h-50 rounded-lg object-cover border-b border-slate-800">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-white mb-2">Currency Converter</h4>
+                        <p class="text-slate-400 text-sm mb-4">Dynamic conversion app calculating international rates in real-time using modern JavaScript object handling.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">HTML</span>
+                            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">CSS</span>
+                            <span class="text-xs bg-slate-800 text-sky-400 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex justify-between items-center text-sm font-bold">
+                        <a href="https://github.com/kartvyapandey" target="_blank" class="text-sky-400 hover:text-sky-300">GitHub &rarr;</a>
+                        <a href="https://kartvyapandey.github.io/currency-exchanger/" target="_blank" class="text-slate-300 hover:text-white">Live Demo &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="py-20 px-6 bg-slate-950">
+        <div class="max-w-3xl mx-auto border border-slate-800 bg-slate-900 p-8 rounded-xl text-center shadow-xl">
+            <h3 class="text-3xl font-bold text-sky-400 mb-4">Curriculum Vitae</h3>
+            <p class="text-slate-300 mb-6">Need a copy of my official resume for review? Download the PDF version below.</p>
+            <a href="Kartvya_Pandey_Resume.pdf" download class="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold px-8 py-3 rounded-md transition shadow-lg shadow-sky-500/20">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                Download Official CV (PDF)
+            </a>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-md mx-auto border border-slate-800 bg-slate-950 p-8 rounded-xl shadow-2xl">
+            <h3 class="text-3xl font-bold text-sky-400 mb-6 text-center">Contact Me</h3>
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Full Name</label>
+                    <input type="text" id="nameInput" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-800 rounded p-3 text-white focus:outline-none focus:border-sky-400 transition">
+                    <p id="nameError" class="text-rose-500 text-xs mt-1 hidden">Please enter a valid name.</p>
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Email Address</label>
+                    <input type="email" id="emailInput" placeholder="johndoe@example.com" class="w-full bg-slate-900 border border-slate-800 rounded p-3 text-white focus:outline-none focus:border-sky-400 transition">
+                    <p id="emailError" class="text-rose-500 text-xs mt-1 hidden">Please enter a valid email address.</p>
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Message</label>
+                    <textarea id="messageInput" placeholder="Your message..." rows="4" class="w-full bg-slate-900 border border-slate-800 rounded p-3 text-white focus:outline-none focus:border-sky-400 transition"></textarea>
+                    <p id="messageError" class="text-rose-500 text-xs mt-1 hidden">Message cannot be empty.</p>
+                </div>
+                <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold p-3 rounded transition shadow-lg shadow-sky-500/10">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-slate-800 text-sky-400 border border-slate-700 p-3 rounded-full shadow-lg hover:bg-sky-500 hover:text-slate-950 transition-all duration-300 opacity-0 invisible z-50">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

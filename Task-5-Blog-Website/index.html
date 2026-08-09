@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicles | Editorial Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 font-sans min-h-screen transition-colors duration-300">
+
+    <nav class="bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-40 shadow-sm transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-black tracking-tighter text-stone-900 dark:text-white">CHRONICLES.</h1>
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="p-2 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700 transition">
+                    <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button id="openFormBtn" class="bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 font-bold px-5 py-2 rounded-full transition text-sm flex items-center gap-2 shadow-md">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Write a Story
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <header class="mb-12 text-center md:text-left">
+            <h2 class="text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4 tracking-tight">Explore Perspectives</h2>
+            <p class="text-lg text-stone-500 dark:text-stone-400 max-w-2xl">Read insights, stories, and ideas from our community of writers.</p>
+        </header>
+
+        <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+        <div id="emptyState" class="hidden text-center py-20 bg-white dark:bg-stone-900 border border-dashed border-stone-300 dark:border-stone-700 rounded-2xl mt-8">
+            <svg class="w-16 h-16 text-stone-300 dark:text-stone-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"></path></svg>
+            <h3 class="text-xl font-bold text-stone-700 dark:text-stone-300 mb-2">No stories yet</h3>
+            <button onclick="document.getElementById('openFormBtn').click()" class="text-amber-600 dark:text-amber-500 font-bold hover:underline">Write now &rarr;</button>
+        </div>
+    </main>
+
+    <div id="formOverlay" class="fixed inset-0 bg-stone-900/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300 p-4">
+        <div class="bg-white dark:bg-stone-900 w-full max-w-2xl rounded-2xl shadow-2xl p-6 md:p-8 transform scale-95 transition-transform duration-300" id="formModal">
+            <div class="flex justify-between items-center mb-6 border-b border-stone-100 dark:border-stone-800 pb-4">
+                <h3 id="formTitle" class="text-2xl font-bold text-stone-900 dark:text-white">Create New Story</h3>
+                <button id="closeFormBtn" class="text-stone-400 hover:text-stone-800 dark:hover:text-white transition rounded-full p-1 hover:bg-stone-100 dark:hover:bg-stone-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="blogForm" class="space-y-5">
+                <input type="hidden" id="postId" value="">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-1">Author Name</label>
+                        <input type="text" id="authorInput" placeholder="John Doe" class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-700 rounded-lg p-3 text-stone-900 dark:text-white focus:outline-none focus:border-amber-500 transition" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-1">Cover Image URL</label>
+                        <input type="url" id="imageInput" placeholder="https://..." class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-700 rounded-lg p-3 text-stone-900 dark:text-white focus:outline-none focus:border-amber-500 transition" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-1">Story Title</label>
+                    <input type="text" id="titleInput" placeholder="Catchy title here..." class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-700 rounded-lg p-3 text-stone-900 dark:text-white focus:outline-none focus:border-amber-500 transition" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-1">Content</label>
+                    <textarea id="contentInput" rows="6" placeholder="Write your thoughts..." class="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-700 rounded-lg p-3 text-stone-900 dark:text-white focus:outline-none focus:border-amber-500 transition resize-none" required></textarea>
+                </div>
+                <div class="flex justify-end pt-4">
+                    <button type="submit" id="submitBtn" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg shadow-amber-600/20">Publish Story</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="readOverlay" class="fixed inset-0 bg-stone-900/95 backdrop-blur-md z-[60] flex items-center justify-center hidden opacity-0 transition-opacity duration-300 p-4 md:p-8">
+        <div class="bg-white dark:bg-stone-900 w-full max-w-4xl h-full max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col relative" id="readModal">
+            
+            <button id="closeReadBtn" class="absolute top-4 right-4 z-10 bg-black/40 hover:bg-black/60 text-white backdrop-blur-md rounded-full p-2 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="overflow-y-auto custom-scrollbar flex-1">
+                <div class="relative h-64 md:h-96 w-full flex-shrink-0">
+                    <img id="readImage" src="" alt="Cover" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 md:left-12 right-6">
+                        <h1 id="readTitle" class="text-3xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-lg">Title</h1>
+                        <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg" id="readAvatar">A</div>
+                            <div>
+                                <p id="readAuthor" class="font-bold text-white text-sm">Author Name</p>
+                                <p id="readDate" class="text-xs text-stone-300">Date</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-12 border-b border-stone-200 dark:border-stone-800">
+                    
+                    <div class="flex items-center gap-4 mb-8 pb-8 border-b border-stone-100 dark:border-stone-800">
+                        <span class="text-sm font-bold text-stone-500 dark:text-stone-400">Share:</span>
+                        <button onclick="copyLink()" class="p-2 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-amber-600 rounded-full transition" title="Copy Link">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        </button>
+                        <button onclick="alert('Redirecting to Twitter...')" class="p-2 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-blue-400 rounded-full transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </button>
+                    </div>
+
+                    <div id="readContent" class="prose prose-stone dark:prose-invert max-w-none text-stone-700 dark:text-stone-300 leading-relaxed whitespace-pre-wrap text-lg">
+                        Content goes here...
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-12 bg-stone-50 dark:bg-stone-950">
+                    <h3 class="text-2xl font-bold text-stone-900 dark:text-white mb-6">Discussion</h3>
+                    
+                    <form id="commentForm" class="mb-8 flex gap-3">
+                        <input type="hidden" id="commentPostId">
+                        <input type="text" id="commenterName" placeholder="Your name" class="w-1/3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm text-stone-900 dark:text-white focus:outline-none focus:border-amber-500" required>
+                        <input type="text" id="commentText" placeholder="Add a comment..." class="flex-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg p-3 text-sm text-stone-900 dark:text-white focus:outline-none focus:border-amber-500" required>
+                        <button type="submit" class="bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold px-6 rounded-lg hover:bg-stone-800 transition">Post</button>
+                    </form>
+
+                    <div id="commentsList" class="space-y-4">
+                        </div>
+                </div>
+
+                <div class="p-6 md:p-12 bg-stone-100 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800">
+                    <h3 class="text-xl font-bold text-stone-900 dark:text-white mb-6">Read Next</h3>
+                    <div id="relatedPostsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-stone-900 dark:bg-white text-white dark:text-stone-900 px-6 py-3 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+        Action completed!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

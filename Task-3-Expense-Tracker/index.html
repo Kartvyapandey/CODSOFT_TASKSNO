@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker | Financial Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-white tracking-tight">Expense Tracker</h1>
+                <p class="text-gray-400 text-sm mt-1">Monitor income, expenses, and financial insights</p>
+            </div>
+            <span class="mt-4 md:mt-0 px-3 py-1 bg-gray-800 text-emerald-400 text-xs font-semibold rounded-full border border-gray-700">
+                Personal Finance Hub
+            </span>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-gray-800 border border-gray-700 rounded-xl p-5 shadow-lg">
+                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Current Balance</p>
+                <h2 id="totalBalance" class="text-3xl font-extrabold text-white mt-2">₹0.00</h2>
+            </div>
+            <div class="bg-gray-800 border border-gray-700 rounded-xl p-5 shadow-lg border-l-4 border-l-emerald-500">
+                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Total Income</p>
+                <h2 id="totalIncome" class="text-3xl font-bold text-emerald-400 mt-2">+₹0.00</h2>
+            </div>
+            <div class="bg-gray-800 border border-gray-700 rounded-xl p-5 shadow-lg border-l-4 border-l-rose-500">
+                <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Total Expenses</p>
+                <h2 id="totalExpenses" class="text-3xl font-bold text-rose-400 mt-2">-₹0.00</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1 bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-lg h-fit">
+                <h3 id="formTitle" class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2">Add New Transaction</h3>
+                <form id="transactionForm" class="space-y-4">
+                    <input type="hidden" id="editId" value="">
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Description / Title</label>
+                        <input type="text" id="descInput" placeholder="e.g., Monthly Salary, Grocery" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500" required>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1">Amount (₹)</label>
+                            <input type="number" id="amountInput" step="0.01" min="0.01" placeholder="0.00" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1">Type</label>
+                            <select id="typeSelect" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                                <option value="income">Income (+)</option>
+                                <option value="expense">Expense (-)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1">Category</label>
+                            <select id="categorySelect" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                                <option value="Salary">Salary</option>
+                                <option value="Food">Food & Dining</option>
+                                <option value="Rent">Rent & Bills</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1">Date</label>
+                            <input type="date" id="dateInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500" required>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex gap-2">
+                        <button type="submit" id="submitBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-lg transition text-sm">
+                            Add Transaction
+                        </button>
+                        <button type="button" id="cancelBtn" class="hidden bg-gray-700 hover:bg-gray-600 text-gray-300 font-bold py-2.5 px-3 rounded-lg transition text-sm">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="lg:col-span-2 space-y-4">
+                
+                <div class="flex flex-col sm:flex-row justify-between items-center bg-gray-800 border border-gray-700 p-4 rounded-xl gap-3">
+                    <h3 class="text-base font-bold text-white">Transaction History</h3>
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <label class="text-xs text-gray-400 whitespace-nowrap">Filter Category:</label>
+                        <select id="filterCategory" class="bg-gray-900 border border-gray-700 text-xs text-white rounded-lg p-2 focus:outline-none focus:border-emerald-500 w-full sm:w-auto">
+                            <option value="All">All Categories</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Food">Food & Dining</option>
+                            <option value="Rent">Rent & Bills</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="transactionList" class="space-y-3 custom-scrollbar max-h-[480px] overflow-y-auto pr-1">
+                    </div>
+
+                <div id="emptyState" class="hidden text-center py-12 bg-gray-800/50 border border-dashed border-gray-700 rounded-xl">
+                    <p class="text-gray-500 text-sm">No transactions recorded yet.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mint Focus | Advanced To-Do</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans min-h-screen transition-colors duration-300 p-4 md:p-8">
+
+    <div class="max-w-3xl mx-auto">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tight text-emerald-600 dark:text-emerald-400">Mint Focus.</h1>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Organize your work, life, and priorities.</p>
+            </div>
+            <button id="themeToggle" class="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                <svg id="themeIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+        </header>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 mb-8">
+            <form id="taskForm" class="space-y-4">
+                <div>
+                    <input type="text" id="taskInput" placeholder="What needs to be done?" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-400 transition" required>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <select id="categoryInput" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-sm text-slate-700 dark:text-slate-300 focus:outline-none focus:border-emerald-500 transition">
+                            <option value="Personal">🏠 Personal</option>
+                            <option value="Work">💼 Work</option>
+                            <option value="Shopping">🛒 Shopping</option>
+                            <option value="Health">💪 Health</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="priorityInput" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-sm text-slate-700 dark:text-slate-300 focus:outline-none focus:border-emerald-500 transition">
+                            <option value="Low">🟢 Low Priority</option>
+                            <option value="Medium">🟡 Medium Priority</option>
+                            <option value="High">🔴 High Priority</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="date" id="dateInput" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-sm text-slate-700 dark:text-slate-300 focus:outline-none focus:border-emerald-500 transition" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-lg transition shadow-lg shadow-emerald-500/30">
+                    Add Task
+                </button>
+            </form>
+        </div>
+
+        <div class="flex justify-between items-center mb-4 px-2">
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">Your Tasks (<span id="taskCount">0</span>)</h3>
+            <button id="sortBtn" class="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline">
+                Sort by Due Date ↓
+            </button>
+        </div>
+
+        <ul id="taskList" class="space-y-3">
+            </ul>
+
+        <div id="emptyState" class="hidden text-center py-12 bg-white dark:bg-slate-900 border border-dashed border-slate-300 dark:border-slate-700 rounded-2xl mt-4">
+            <p class="text-slate-500 dark:text-slate-400">You're all caught up! Enjoy your day.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

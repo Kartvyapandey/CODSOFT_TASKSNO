@@ -1,0 +1,37 @@
+/* Custom Checkbox Styling for Light & Dark Mode */
+.custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1; /* slate-300 */
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.dark .custom-checkbox {
+    border-color: #475569; /* slate-600 */
+}
+
+.custom-checkbox:checked {
+    background-color: #10b981; /* emerald-500 */
+    border-color: #10b981;
+}
+
+.custom-checkbox:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Strikethrough animation for completed tasks */
+.completed-text {
+    text-decoration: line-through;
+    color: #94a3b8; /* slate-400 */
+}
